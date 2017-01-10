@@ -7,21 +7,42 @@
     <title>title</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 </head>
 
 
-<body>
+<body onload="InitThis();">
 
 
-    <canvas id="simplonlogo" width="600" height="600" style="border: 1px solid black">
+    <canvas id="paint" width="600" height="600" style="border: 1px solid black">
 
     
 </canvas>
 
+    <div id="boutons">
+        <input type="button" data-color="#D94A4A" class="color">
+        <input type="button" data-color="#D09828" class="color">
+        <input type="button" data-color="#A5DA24" class="color">
+        <input type="button" data-color="#81CACA" class="color">
+        <input type="button" data-color="#8B81DD" class="color">
+        <input type="button" data-color="#C756D6" class="color">
+        <input type="button" data-color="#BB4BA0" class="color">
+        <input type="button" data-color="#C6355C" class="color">
+        <input type="button" data-color="#FFFFFF" class="color">
+        <input type="button" data-color="#231919" class="color">
+        <input type="button" value="Cercle" class="btn btn-primary">
+    </div>
 
-    <script src="js/index.js"></script>
+
+
+
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="js/index.js"></script>
+
 </body>
+
+</html>
 
 </html>
