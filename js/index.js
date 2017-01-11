@@ -5,13 +5,14 @@ $(document).ready(function() {
 
     var mousePressed = false;
     var lastX, lastY;
-    var ctx;
     var originX
     var originY
     var finalX
     var finalY
     var endX = finalX - originX
     var endY = finalY - originY
+    var ctx = document.getElementById('paint').getContext("2d");
+    var tools = {};
 
 
 
@@ -32,7 +33,7 @@ $(document).ready(function() {
     });
 
     function Dessin() {
-        ctx = document.getElementById('paint').getContext("2d");
+        var tool = this;
 
         $('#paint').mousedown(function(e) {
             mousePressed = true;
@@ -114,57 +115,44 @@ $(document).ready(function() {
             alert("Please use Chrome");
         }
     };
+
+
+
+
+    $('#carre').click(function() {
+        var tool = this;
+
+        $('#paint').mousedown(function(f) {
+            originX = (f.pageX - this.offsetLeft);
+            originY = (f.pageY - this.offsetTop);
+            mousePressed = true;
+        });
+
+        $('#paint').mousemove(function(f) {
+            if (mouseOn) {
+                endX = (f.pageX - this.offsetLeft) - originX;
+                endY = (f.pageY - this.offsetTop) - originY;
+            }
+        });
+
+        $('#paint').mouseup(function(f) {
+            finalX = f.pageX - this.offsetLeft;
+            finalY = f.pageY - this.offsetTop;
+            draw();
+            mousePressed = false;
+        });
+        $('#paint').mouseleave(function(f) {
+            mousePressed = false;
+        });
+
+        function draw() {
+            ctx.beginPath();
+            ctx.strokeStyle = fond;
+            ctx.lineWidth = 10;
+            ctx.lineJoin = "round";
+            ctx.strokeRect(originX, originY, endX, endY, finalX, finalY);
+            ctx.closePath();
+            ctx.stroke();
+        };
+    });
 });
-
-/*$("#carre").click(function() {
-    Rectangle();
-});
-
-
-function Rectangle() {
-    ctx = document.getElementById('paint').getContext("2d");
-
-    $('#paint').mousedown(function(f) {
-        mousePressed = true;
-        originX = f.pageX - $(this).offset().left;
-        originY = f.pageY - $(this).offset().top;
-        square(originX, originY, false);
-    });
-
-    $('#paint').mousemove(function(f) {
-        if (mousePressed) {
-            finalX = f.pageX - $(this).offset().left;
-            finalY = f.pageY - $(this).offset().top;;
-        }
-    });
-
-    $('#paint').mouseup(function(f) {
-        mousePressed = false;
-        endX = f.pageX - $(this).offset().left;
-        endY = f.pageY - $(this).offset().top;
-        console.log(endX)
-        console.log(endY)
-        square(endX, endY, false);
-    });
-    $('#paint').mouseleave(function(e) {
-        mousePressed = false;
-    });
-}
-
-$("input:button").click(function() {
-    fond = $(this).attr("data-color");
-});
-
-function square(originX, originY, isDown) {
-    if (isDown) {
-        ctx.beginPath();
-        ctx.strokeStyle = fond;
-        ctx.lineWidth = 10; /*$('#selWidth').val();
-        ctx.moveTo(originX, originY, endX, endY);
-        ctx.rect(endX, endY);
-        ctx.closePath();
-        ctx.stroke();
-    }
-    lastX = x;
-    lastY = y;
-}*/
