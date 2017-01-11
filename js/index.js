@@ -81,6 +81,17 @@ $(document).ready(function() {
     }
 
 
+    $("#Initialiser").click(function() {
+        Initialiser();
+    });
+
+    function Initialiser() {
+
+        ctx.clearRect(0, 0, paint.width, paint.height);
+
+    }
+
+
 
     $("#saveImage").click(function() {
         saveImage();
