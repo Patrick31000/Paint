@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>title</title>
+    <title>Paint</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -14,33 +14,43 @@
 
 <body onload="InitThis();">
 
-
-    <canvas id="paint" width="600" height="600" style="border: 1px solid black">
-
-    
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="paint" width="600" height="600" style="border: 1px solid black">
 </canvas>
+        </div>
 
-    <div id="boutons">
-        <input type="button" data-color="#D94A4A" class="color">
-        <input type="button" data-color="#D09828" class="color">
-        <input type="button" data-color="#A5DA24" class="color">
-        <input type="button" data-color="#81CACA" class="color">
-        <input type="button" data-color="#8B81DD" class="color">
-        <input type="button" data-color="#C756D6" class="color">
-        <input type="button" data-color="#BB4BA0" class="color">
-        <input type="button" data-color="#C6355C" class="color">
-        <input type="button" data-color="#FFFFFF" class="color">
-        <input type="button" data-color="#231919" class="color">
-        <input type="button" value="Cercle" class="btn btn-primary">
+        <div id="fonction">
+            <button type="reset" value="Initialiser">Initialiser</button>
+            <button type="dl" id="btn-download" download="my-file-name.png">Download</button>
+            <div class="col-md-5-offset-1">
+                <input type="button" value="Gomme" data-color="#FFFFFF " class="color">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div id="boutons ">
+            <input type="button" data-color="#D94A4A" class="color">
+            <input type="button" data-color="#D09828" class="color">
+            <input type="button" data-color="#A5DA24" class="color">
+            <input type="button" data-color="#81CACA" class="color">
+            <input type="button" data-color="#8B81DD" class="color">
+            <input type="button" data-color="#C756D6" class="color">
+            <input type="button" data-color="#BB4BA0" class="color">
+            <input type="button" data-color="#C6355C" class="color">
+            <input type="button" data-color="#231919" class="color">
+
+        </div>
     </div>
 
 
 
 
-
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="js/index.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js "></script>
+    <script src="js/index.js "></script>
 </body>
 
 </html>
