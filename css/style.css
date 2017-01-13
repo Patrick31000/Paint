@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'pretty_trees';
+    src: url('../font/CFPrettyTrees-Regular.woff') format('woff'), url('../font/CFPrettyTrees-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.color {
+    border-radius: 100px;
+    background-color: silver;
+}
+
+em {
+    text-align: center;
+    font-family: "pretty_trees"
+}
+
+h1 {
+    text-align: center;
+    font-family: "pretty_trees"
+}
+
+.allpage {
+    background-color: silver;
+}
+
+canvas {
+    background-color: white;
+    text-align: center;
+    border-radius: 70px;
+}
+
+#paint {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+#fonction {
+    text-align: center;
+    background-color: silver;
+}
+
+.couleur {
+    text-align: center;
+    background-color: silver;
+}
+
+.Topbar {
+    background-color: silver;
+}
+
+html {
+    background-color: silver;
+}

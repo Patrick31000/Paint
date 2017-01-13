@@ -11,7 +11,7 @@ $(document).ready(function() {
     var finalY
     var endX
     var endY
-    var ctx = document.getElementById('paint').getContext("2d");
+    ctx = document.getElementById('paint').getContext("2d");
 
 
 
@@ -201,4 +201,20 @@ $(document).ready(function() {
             ctx.save();
         };
     });
+});
+
+$("#save").click(function() {
+    canvas2 = ctx.getImageData(0, 0, 1000, 600);
+    console.log(canvas2);
+});
+
+$("#reload").click(function() {
+    ctx.putImageData(canvas2, 0, 0);
+});
+
+
+$("#refresh").click(function() {
+    var container = document.getElementById("paint");
+    var content = container.innerHTML;
+    container.innerHTML = content;
 });
