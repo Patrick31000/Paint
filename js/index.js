@@ -104,11 +104,11 @@ $(document).ready(function() {
         var ua = window.navigator.userAgent;
 
         if (ua.indexOf("Chrome") > 0) {
-            // save image without file type
+            // Sauvegarde temporaire
             var canvas = document.getElementById("paint");
             document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
 
-            // save image as png
+            // sauvegarde au format png
             var link = document.createElement('a');
             link.download = "test.png";
             link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");

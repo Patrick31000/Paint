@@ -36,6 +36,9 @@ $(document).ready(function() {
             $(this).mousemove(function(e) {
                 finalX = e.pageX - $(this).offset().left;
                 finalY = e.pageY - $(this).offset().top;
+                initDraw(e, tool);
+                prevX = e.pageX - $(this).offset().left;
+                prevY = e.pageY - $(this).offset().top
                 $("#paint").mouseup(function(e) {
                     endX = e.pageX - $(this).offset().left;
                     endY = e.pageY - $(this).offset().top;
@@ -55,7 +58,7 @@ $(document).ready(function() {
             });
         });
         if (tool == "Initialiser") {
-            init();
+            Initialiser();
         }
     });
 
@@ -74,39 +77,15 @@ $(document).ready(function() {
 
 
 
-    /*$('#paint').mousedown(function(e) {
-            mousePressed = true;
-            originX = e.pageX - $(this).offset().left;
-            originY = e.pageY - $(this).offset().top;
-            Draw(originX, originY, false);
-        });
 
-        $('#paint').mousemove(function(e) {
-            if (mousePressed) {
-                finalX = e.pageX - $(this).offset().left;
-                finalY = e.pageY - $(this).offset().top;
-                Draw(finalX, finalY, true);
-            }
-        });
-
-        $('#paint').mouseup(function(e) {
-            mousePressed = false;
-            endX = e.pageX - $(this).offset().left;
-            endY = e.pageY - $(this).offset().top;
-
-
-        });
-        $('#paint').mouseleave(function(e) {
-            mousePressed = false;
-        });
-    }*/
     //Recuperation des couleurs quand bouton cliqué//
     $("input:button").click(function() {
         fond = $(this).attr("data-color");
+        console.log(fond);
     });
 
     //Fonction Dessin du canvas//
-    function Draw() {
+    function Draw(x, y, z) {
         if (z) {
             ctx.beginPath();
             ctx.strokeStyle = fond;
@@ -144,11 +123,11 @@ $(document).ready(function() {
         var ua = window.navigator.userAgent;
 
         if (ua.indexOf("Chrome") > 0) {
-            // save image without file type
+            // Sauvegarde temporaire
             var canvas = document.getElementById("paint");
             document.location.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
 
-            // save image as png
+            // sauvegarde au format png
             var link = document.createElement('a');
             link.download = "test.png";
             link.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
@@ -158,36 +137,6 @@ $(document).ready(function() {
         }
     };
 
-
-
-    //Lancement fonction carré et récupération des coordonnées de la souris//
-    /* $('#carre').click(function() {*/
-
-    /*function rect() {
-
-        $('#paint').mousedown(function(f) {
-            originX = (f.pageX - this.offsetLeft);
-            originY = (f.pageY - this.offsetTop);
-            mousePressed = true;
-        });
-
-        $('#paint').mousemove(function(f) {
-            if (mousePressed) {
-                endX = (f.pageX - this.offsetLeft) - originX;
-                endY = (f.pageY - this.offsetTop) - originY;
-            }
-        });
-
-        $('#paint').mouseup(function(f) {
-            finalX = f.pageX - this.offsetLeft;
-            finalY = f.pageY - this.offsetTop;
-            draw();
-            mousePressed = false;
-        });
-        $('#paint').mouseleave(function(f) {
-            mousePressed = false;
-        });*/
-    // Fonction canvas pour tracer des rectangles//
     function rect() {
         if (z) {
             ctx.save();
@@ -199,37 +148,10 @@ $(document).ready(function() {
             ctx.closePath();
             ctx.stroke();
 
-        };
-    };
+        }
+    }
 
 
-    /* //Lancement fonction cercle et récupération des coordonnées de la souris//
-     $('#cercle').click(function() {*/
-
-    /*function Cerc() {
-
-        $('#paint').mousedown(function(g) {
-            originX = (g.pageX - this.offsetLeft);
-            originY = (g.pageY - this.offsetTop);
-            mousePressed = true;
-        });
-
-        $('#paint').mousemove(function(g) {
-            if (mousePressed) {
-                endX = (g.pageX - this.offsetLeft) - originX;
-                endY = (g.pageY - this.offsetTop) - originY;
-            }
-        });
-
-        $('#paint').mouseup(function(g) {
-            finalX = g.pageX - this.offsetLeft;
-            finalY = g.pageY - this.offsetTop;
-            circle();
-            mousePressed = false;
-        });
-        $('#paint').mouseleave(function(g) {
-            mousePressed = false;
-        });*/
 
     //fonction canvas du cercle//
     function circle() {
@@ -244,7 +166,7 @@ $(document).ready(function() {
             ctx.closePath();
             ctx.stroke();
             ctx.save();
-        };
+        }
     }
 
 
