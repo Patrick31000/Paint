@@ -24,13 +24,17 @@
 
         <canvas id="paint" width="1000" height="600" style="border: 5px solid black">
 </canvas>
-</div>
+        <div>
 
-<div id="fonction">
-    <button type="reset" class="btn btn-default" id="Initialiser">Initialiser</button>
-    <button type="button" class="btn btn-primary" id="saveImage">save image</button>
-    <button type="button" class="btn btn-success" id="Trait">Trait</button>
-    <button type="button" class="btn btn-danger" id="cercle">Cercle</button> Line width : <select id="selWidth">
+        </div>
+        <div id="fonction">
+            <button type="reset" class="btn btn-default outil" id="Initialiser">Tout effacer</button>
+            <button type="button" class="btn btn-primary outil" id="saveImage">Download</button>
+            <button type="button" class="btn btn-primary" id="save">Save</button>
+            <button type="button" class="btn btn-primary" id="reload">Retour</button>
+            <button type="button" class="btn btn-success outil" id="Trait">Trait</button>
+            <button type="button" class="btn btn-warning outil" id="carre">Rectangle</button>
+            <button type="button" class="btn btn-danger outil" id="cercle">Cercle</button> Line width : <select id="selWidth">
             <option value="1">1</option>
             <option value="3">3</option>
             <option value="5">5</option>
@@ -39,38 +43,38 @@
             <option value="11">11</option>
         </select>
 
-</div>
+        </div>
 
 
 
 
 
-<div class="couleur">
+        <div class="couleur">
 
-    <div id="boutons ">
-        <input type="button" data-color="#D94A4A " class="color">
-        <input type="button" data-color="#D09828 " class="color">
-        <input type="button" data-color="#A5DA24 " class="color">
-        <input type="button" data-color="#81CACA " class="color">
-        <input type="button" data-color="#8B81DD " class="color">
-        <input type="button" data-color="#C756D6 " class="color">
-        <input type="button" data-color="#BB4BA0 " class="color">
-        <input type="button" data-color="#C6355C " class="color">
-        <input type="button" data-color="#231919 " class="color">
-        <input type="button" value="Gomme" data-color="#FFFFFF  " class="color">
+            <div id="boutons ">
+                <input type="button" data-color="#D94A4A " class="color">
+                <input type="button" data-color="#D09828 " class="color">
+                <input type="button" data-color="#A5DA24 " class="color">
+                <input type="button" data-color="#81CACA " class="color">
+                <input type="button" data-color="#8B81DD " class="color">
+                <input type="button" data-color="#C756D6 " class="color">
+                <input type="button" data-color="#BB4BA0 " class="color">
+                <input type="button" data-color="#C6355C " class="color">
+                <input type="button" data-color="#231919 " class="color">
+                <input type="button" value="Gomme" data-color="#FFFFFF  " class="color">
 
-    </div>
-</div>
-
-
+            </div>
+        </div>
 
 
 
 
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js "></script>
-<script src="js/index.js "></script>
-</body>
+
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js "></script>
+        <script src="js/index.js "></script>
+    </body>
 
 
 </html>

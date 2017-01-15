@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 
 
-
+    var tool
     var mousePressed = false;
     var lastX, lastY;
     var originX
@@ -14,6 +14,50 @@ $(document).ready(function() {
     ctx = document.getElementById('paint').getContext("2d");
 
 
+
+    function initDraw(e, tool) {
+        if (tool == "carre") {
+            rect();
+        } else if (tool == "Trait") {
+            Draw();
+        } else if (tool == 'cercle') {
+            circle();
+        } else {
+            return false;
+        }
+    }
+    $(".outil").click(function(e) {
+        tool = $(this).attr('id');
+        console.log(tool);
+        $("#paint").mousedown(function(e) {
+            originX = e.pageX - $(this).offset().left;
+            originY = e.pageY - $(this).offset().top;
+            z = true;
+            $(this).mousemove(function(e) {
+                finalX = e.pageX - $(this).offset().left;
+                finalY = e.pageY - $(this).offset().top;
+                $("#paint").mouseup(function(e) {
+                    endX = e.pageX - $(this).offset().left;
+                    endY = e.pageY - $(this).offset().top;
+                    z = false;
+
+                    $(this).unbind('mousemove');
+                });
+                $('#paint').mouseleave(function() {
+                    endX = e.pageX - $(this).offset().left;
+                    endY = e.pageY - $(this).offset().top;
+                    z = false;
+
+
+                    $(this).unbind('mousemove');
+                });
+
+            });
+        });
+        if (tool == "Initialiser") {
+            init();
+        }
+    });
 
     //Récuperation des couleurs dans le html//
     var colors = [];
@@ -27,14 +71,10 @@ $(document).ready(function() {
         $(this).css("background-color", colors[i]);
         i++;
     });
-    //Initialisation de la fonction Dessin//
-    $("#Trait").click(function() {
-        Dessin();
-    });
-    //Recuperation coordonnées souris//
-    function Dessin() {
 
-        $('#paint').mousedown(function(e) {
+
+
+    /*$('#paint').mousedown(function(e) {
             mousePressed = true;
             originX = e.pageX - $(this).offset().left;
             originY = e.pageY - $(this).offset().top;
@@ -59,15 +99,15 @@ $(document).ready(function() {
         $('#paint').mouseleave(function(e) {
             mousePressed = false;
         });
-    }
+    }*/
     //Recuperation des couleurs quand bouton cliqué//
     $("input:button").click(function() {
         fond = $(this).attr("data-color");
     });
 
     //Fonction Dessin du canvas//
-    function Draw(x, y, isDown) {
-        if (isDown) {
+    function Draw() {
+        if (z) {
             ctx.beginPath();
             ctx.strokeStyle = fond;
             ctx.lineWidth = $('#selWidth').val();;
@@ -121,7 +161,9 @@ $(document).ready(function() {
 
 
     //Lancement fonction carré et récupération des coordonnées de la souris//
-    $('#carre').click(function() {
+    /* $('#carre').click(function() {*/
+
+    /*function rect() {
 
         $('#paint').mousedown(function(f) {
             originX = (f.pageX - this.offsetLeft);
@@ -144,9 +186,10 @@ $(document).ready(function() {
         });
         $('#paint').mouseleave(function(f) {
             mousePressed = false;
-        });
-        // Fonction canvas pour tracer des rectangles//
-        function draw() {
+        });*/
+    // Fonction canvas pour tracer des rectangles//
+    function rect() {
+        if (z) {
             ctx.save();
             ctx.beginPath();
             ctx.strokeStyle = fond;
@@ -157,12 +200,13 @@ $(document).ready(function() {
             ctx.stroke();
 
         };
-    });
-
-    //Lancement fonction cercle et récupération des coordonnées de la souris//
-    $('#cercle').click(function() {
+    };
 
 
+    /* //Lancement fonction cercle et récupération des coordonnées de la souris//
+     $('#cercle').click(function() {*/
+
+    /*function Cerc() {
 
         $('#paint').mousedown(function(g) {
             originX = (g.pageX - this.offsetLeft);
@@ -185,10 +229,11 @@ $(document).ready(function() {
         });
         $('#paint').mouseleave(function(g) {
             mousePressed = false;
-        });
+        });*/
 
-        //fonction canvas du cercle//
-        function circle() {
+    //fonction canvas du cercle//
+    function circle() {
+        if (z) {
             ctx.save();
             radius = Math.sqrt(Math.pow((originX - finalX), 2) + Math.pow((originY - finalY), 2));
             ctx.beginPath();
@@ -200,21 +245,23 @@ $(document).ready(function() {
             ctx.stroke();
             ctx.save();
         };
+    }
+
+
+
+    $("#save").click(function() {
+        canvas2 = ctx.getImageData(0, 0, 1000, 600);
+        console.log(canvas2);
     });
-});
 
-$("#save").click(function() {
-    canvas2 = ctx.getImageData(0, 0, 1000, 600);
-    console.log(canvas2);
-});
-
-$("#reload").click(function() {
-    ctx.putImageData(canvas2, 0, 0);
-});
+    $("#reload").click(function() {
+        ctx.putImageData(canvas2, 0, 0);
+    });
 
 
-$("#refresh").click(function() {
-    var container = document.getElementById("paint");
-    var content = container.innerHTML;
-    container.innerHTML = content;
+    $("#refresh").click(function() {
+        var container = document.getElementById("paint");
+        var content = container.innerHTML;
+        container.innerHTML = content;
+    });
 });
